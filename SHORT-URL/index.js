@@ -11,17 +11,27 @@ connectToMongoDB(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+
+app.set("view engine", "ejs");
+
 app.use(express.json());
 
 app.get("/test", async (req, res) => {
   const allUrls = await URL.find({});
   return res.end(`
     <html>
+      <head></head>
+      <body>
+        <ol>
+          ${allUrls.map(url => `<li>${url.shortId} - ${url.redirectURL} - ${url.visitHistory.length}</li>`).join()}
+        </ol>
+      </body>
+    </html>
   `);
 })
 app.use("/url", urlRoute);
 
-app.get('/:shortId', async(req, res) => {
+app.get('/url/:shortId', async(req, res) => {
   const shortId = req.params.shortId;
   const entry = await URL.findOneAndUpdate(
     {
