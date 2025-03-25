@@ -12,6 +12,13 @@ connectToMongoDB(process.env.MONGO_URI)
   .catch((err) => console.error("MongoDB connection error:", err));
 
 app.use(express.json());
+
+app.get("/test", async (req, res) => {
+  const allUrls = await URL.find({});
+  return res.end(`
+    <html>
+  `);
+})
 app.use("/url", urlRoute);
 
 app.get('/:shortId', async(req, res) => {
