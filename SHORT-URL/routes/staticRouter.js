@@ -4,7 +4,14 @@ const URL = require("../models/url");
 
 const router = express.Router();
 
-router.get("/", restrictTo(["NORMAL"]), async (req, res) => {
+router.get("/admin/urls", restrictTo(["ADMIN"]), async (req, res) => {
+    const allurls = await URL.find({});
+    return res.render("home", {
+        urls: allurls,
+    });
+});
+
+router.get("/", restrictTo(["NORMAL", "ADMIN"]), async (req, res) => {
     const allurls = await URL.find({ createdBy: req.user._id });
     return res.render("home", {
         urls: allurls,
