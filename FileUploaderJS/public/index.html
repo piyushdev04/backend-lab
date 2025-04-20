@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FileUploaderJS</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FileUploaderJS</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h2>Upload a File</h2>
-    <form id="uploadForm">
-        <input type="file" name="file" required />
-        <button type="submit">Upload</button>
-    </form>
 
-    <h2>Uploaded Files</h2>
-    <ul id="fileList"></ul>
-    
-    <script src="script.js"></script>
+  <h2>Upload a File</h2>
+
+  <div id="dropZone">
+    <p>Drag & Drop files here</p>
+    <p>or</p>
+    <form id="uploadForm">
+      <input type="file" name="file" required />
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+
+  <div id="progressContainer" style="display: none;">
+    <progress id="uploadProgress" value="0" max="100"></progress>
+    <span id="progressText">0%</span>
+  </div>
+
+  <h2>Uploaded Files</h2>
+  <ul id="fileList"></ul>
+
+  <script src="script.js"></script>
 </body>
 </html>
