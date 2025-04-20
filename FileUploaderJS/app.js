@@ -9,4 +9,6 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api', uploadRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
